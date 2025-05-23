@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title if title else 'Live Crypto Signals' }}</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live Crypto Signals</h1>
+    
+    {% if signals %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Coin</th>
+                    <th>Timeframe</th>
+                    <th>Indicator</th>
+                    <th>Value</th>
+                    <th>Signal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for signal in signals %}
+                <tr>
+                    <td>{{ signal.coin }}</td>
+                    <td>{{ signal.timeframe }}</td>
+                    <td>{{ signal.indicator }}</td>
+                    <td>{{ signal.value | default('N/A') }}</td>
+                    <td>{{ signal.signal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align:center;">No signals available at the moment.</p>
+    {% endif %}
+</body>
+</html>
